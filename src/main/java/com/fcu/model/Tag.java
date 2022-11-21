@@ -4,9 +4,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "Tag")
+@Table(name = "Tag", schema = "forum")
 public class Tag {
 
     @Id
@@ -26,7 +27,7 @@ public class Tag {
             // delay fetch
             fetch = FetchType.LAZY
     )
-    private ArrayList<PostToTag> postToTags;  // one tag can map to many PostToTags
+    private List<PostToTag> postToTags;  // one tag can map to many PostToTags
 
     public String getTag_name() {
         return tag_name;

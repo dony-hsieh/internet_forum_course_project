@@ -1,4 +1,4 @@
-package com.fcu.qaforum;
+package com.fcu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -5,11 +5,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PostToTag")
+@Table(name = "PostToTag", schema = "forum")
+@IdClass(PostToTagId.class)
 public class PostToTag {
-
     // foreign key which reference Tag.tag_name
     // here is the main controlling side
+    @Id
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tag_name")  // the column name in database
@@ -17,6 +18,7 @@ public class PostToTag {
 
     // foreign key which reference Post.post_id
     // here is the main controlling side
+    @Id
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")  // the column name in database

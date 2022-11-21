@@ -4,9 +4,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "User")
+@Table(name = "User", schema = "forum")
 public class User {
     @Id
     @Column(name = "username", length = 20, nullable = false, unique = true)
@@ -37,7 +38,7 @@ public class User {
             // delay fetch
             fetch = FetchType.LAZY
     )
-    private ArrayList<Post> posts;  // one user can map to many posts
+    private List<Post> posts;  // one user can map to many posts
 
     // referenced by Comment.username
     // here is the side which is controlled
@@ -52,7 +53,7 @@ public class User {
             // delay fetch
             fetch = FetchType.LAZY
     )
-    private ArrayList<Comment> comments;  // one user can map to many comments
+    private List<Comment> comments;  // one user can map to many comments
 
     public String getUsername() {
         return username;

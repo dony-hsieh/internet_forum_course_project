@@ -5,11 +5,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
-@Table(name = "Post")
+@Table(name = "Post", schema = "forum")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,7 +60,7 @@ public class Post {
             // delay fetch
             fetch = FetchType.LAZY
     )
-    private ArrayList<Comment> comments;  // one post can map to many comments
+    private List<Comment> comments;  // one post can map to many comments
 
     // referenced by PostToTag.post_id
     // here is the side which is controlled
@@ -74,7 +75,7 @@ public class Post {
             // delay fetch
             fetch = FetchType.LAZY
     )
-    private ArrayList<PostToTag> postToTags;
+    private List<PostToTag> postToTags;
 
     public int getPost_id() {
         return post_id;

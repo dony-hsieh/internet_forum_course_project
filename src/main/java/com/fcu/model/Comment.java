@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Comment")
+@Table(name = "Comment", schema = "forum")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
