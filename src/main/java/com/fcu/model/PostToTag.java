@@ -39,4 +39,8 @@ public class PostToTag {
     public void setPost(Post post) {
         this.post = post;
     }
+
+    public PostToTagId getId() {
+        return new PostToTagId(this.tag, this.post);
+    }
 }

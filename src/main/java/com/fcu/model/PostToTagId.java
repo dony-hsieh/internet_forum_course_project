@@ -26,16 +26,16 @@ public class PostToTagId implements Serializable {
             return false;
         }
         PostToTagId another_id = (PostToTagId) obj;
-        boolean cond1 = this.tag.getTag_name().equals(another_id.tag.getTag_name());
-        boolean cond2 = this.post.getPost_id() == another_id.post.getPost_id();
+        boolean cond1 = this.tag.getTagName().equals(another_id.tag.getTagName());
+        boolean cond2 = this.post.getPostId() == another_id.post.getPostId();
         return cond1 && cond2;
     }
 
     @Override
     public int hashCode() {
         int code = 47;
-        code = 23 * code + (this.post != null ? this.post.getPost_id() : 0);
-        code = 23 * code + (this.tag != null ? this.tag.getTag_name().hashCode() : 0);
+        code = 23 * code + (this.post != null ? this.post.getPostId() : 0);
+        code = 23 * code + (this.tag != null ? this.tag.getTagName().hashCode() : 0);
         return code;
     }
 }

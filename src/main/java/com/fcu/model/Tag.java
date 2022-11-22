@@ -29,7 +29,7 @@ public class Tag {
     )
     private List<PostToTag> postToTags;  // one tag can map to many PostToTags
 
-    public String getTag_name() {
+    public String getTagName() {
         return tag_name;
     }
 

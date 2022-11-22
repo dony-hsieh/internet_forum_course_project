@@ -35,11 +35,11 @@ public class Comment {
     @JoinColumn(name = "username")  // the column name in database
     private User user;  // one comment can only map to one user
 
-    public int getComment_id() {
+    public int getCommentId() {
         return comment_id;
     }
 
-    public void setComment_id(int comment_id) {
+    public void setCommentId(int comment_id) {
         this.comment_id = comment_id;
     }
 
@@ -51,11 +51,11 @@ public class Comment {
         this.content = content;
     }
 
-    public Date getModify_date() {
+    public Date getModifyDate() {
         return modify_date;
     }
 
-    public void setModify_date(Date modify_date) {
+    public void setModifyDate(Date modify_date) {
         this.modify_date = modify_date;
     }
 

@@ -77,11 +77,11 @@ public class Post {
     )
     private List<PostToTag> postToTags;
 
-    public int getPost_id() {
+    public int getPostId() {
         return post_id;
     }
 
-    public void setPost_id(int post_id) {
+    public void setPostId(int post_id) {
         this.post_id = post_id;
     }
 
@@ -101,39 +101,39 @@ public class Post {
         this.content = content;
     }
 
-    public int getVoting_up() {
+    public int getVotingUp() {
         return voting_up;
     }
 
-    public void setVoting_up(int voting_up) {
+    public void setVotingUp(int voting_up) {
         this.voting_up = voting_up;
     }
 
-    public int getVoting_down() {
+    public int getVotingDown() {
         return voting_down;
     }
 
-    public void setVoting_down(int voting_down) {
+    public void setVotingDown(int voting_down) {
         this.voting_down = voting_down;
     }
 
-    public Date getPost_date() {
+    public Date getPostDate() {
         return post_date;
     }
 
-    public void setPost_date(Date post_date) {
+    public void setPostDate(Date post_date) {
         this.post_date = post_date;
     }
 
-    public Date getModify_date() {
+    public Date getModifyDate() {
         return modify_date;
     }
 
-    public void setModify_date(Date modify_date) {
+    public void setModifyDate(Date modify_date) {
         this.modify_date = modify_date;
     }
 
-    public int getParent_post_id() {
+    public int getParentPostId() {
         return parent_post_id;
     }
 
