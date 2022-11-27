@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FcuForum | Sign up</title>
+</head>
+<body>
+
+    <h1>FcuForum | Sign up</h1>
+
+    <form action="/register" method="post">
+        <fieldset>
+            <label for="username"><b>Username:</b></label><br>
+            <input type="text" id="username" name="username" maxlength="20" required>
+            <br><br>
+            <label for="email"><b>Email:</b></label><br>
+            <input type="email" id="email" name="email" max="50" required>
+            <br><br>
+            <label for="password"><b>Password:</b></label><br>
+            <input type="password" id="password" name="password" maxlength="20" required
+                   onkeyup="check_pasw();" onchange="validate_pasw();">
+            <br><br>
+            <lable for="confirm_password"><b>Confirm password:</b></lable><br>
+            <input type="password" id="confirm_password" name="confirm_password" maxlength="20" required
+                   onkeyup="check_pasw();" onchange="validate_pasw();">
+            <span id="message"></span>
+            <br><br>
+            <input type="reset" value="Clear">
+            <input type="submit" name="sign_up" value="Sign up">
+            <br><br>
+            <span style="color:#FF0000" th:text="${tip_message}"></span>
+        </fieldset>
+    </form>
+
+    <script>
+        var check_pasw = function() {
+            if (
+                document.getElementById('password').value ==
+                document.getElementById('confirm_password').value
+            ) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'Matching';
+            } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Not matching';
+            }
+        }
+
+        function validate_pasw() {
+            const password = document.querySelector('input[id=password]');
+            const confirm = document.querySelector('input[id=confirm_password]');
+            if (confirm.value === password.value) {
+                confirm.setCustomValidity('');
+            } else {
+                confirm.setCustomValidity('Passwords do not match');
+            }
+        }
+    </script>
+
+</body>
+</html>

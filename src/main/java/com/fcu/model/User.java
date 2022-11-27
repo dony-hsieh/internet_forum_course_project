@@ -19,8 +19,8 @@ public class User {
     @Column(name = "email", length = 50, nullable = false)
     private String email;
 
-    @Column(name = "available", nullable = false, insertable = false)
-    private boolean available;
+    @Column(name = "enable", nullable = false, insertable = false)
+    private boolean enable;
 
     @Column(name = "privilege", nullable = false, insertable = false)
     private boolean privilege;
@@ -55,6 +55,19 @@ public class User {
     )
     private List<Comment> comments;  // one user can map to many comments
 
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private EmailVerification emailVerification;
+
+    public User() {
+
+    }
+
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -79,12 +92,12 @@ public class User {
         this.email = email;
     }
 
-    public boolean isAvailable() {
-        return available;
+    public boolean isEnable() {
+        return enable;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 
     public boolean isPrivilege() {
