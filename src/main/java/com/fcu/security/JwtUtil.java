@@ -4,6 +4,7 @@ import java.security.Key;
 import java.util.Date;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -40,6 +41,8 @@ public class JwtUtil {
             System.out.println("Incorrect claim exception.");
         } catch (ExpiredJwtException eje) {
             System.out.println("Expired jwt exception.");
+        } catch (SignatureException se) {
+            System.out.println("Signature exception.");
         }
         return null;
     }
