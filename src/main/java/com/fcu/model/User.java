@@ -19,10 +19,10 @@ public class User {
     @Column(name = "email", length = 50, nullable = false)
     private String email;
 
-    @Column(name = "enable", nullable = false, insertable = false)
+    @Column(name = "enable", nullable = false)
     private boolean enable;
 
-    @Column(name = "privilege", nullable = false, insertable = false)
+    @Column(name = "privilege", nullable = false)
     private boolean privilege;
 
     // referenced by Post.username

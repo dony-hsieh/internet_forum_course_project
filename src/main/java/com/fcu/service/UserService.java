@@ -47,15 +47,4 @@ public class UserService implements BasicCrudService<User, String> {
         this.userRepo.delete(user);
         return true;
     }
-
-    public String getUserPassword(String username) {
-        if (!this.userRepo.existsById(username)) {
-            return null;
-        }
-        Optional<User> userOpt = this.userRepo.findById(username);
-        if (userOpt.isEmpty()) {
-            return null;
-        }
-        return userOpt.get().getPassword();
-    }
 }

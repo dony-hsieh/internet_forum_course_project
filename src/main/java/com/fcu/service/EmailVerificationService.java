@@ -29,6 +29,10 @@ public class EmailVerificationService implements BasicCrudService<EmailVerificat
         return foundEmailVerify.get();
     }
 
+    public boolean existsById(String token) {
+        return emailVerificationRepo.existsById(token);
+    }
+
     public boolean insertOne(EmailVerification emailVerification) {
         if (emailVerification == null ||
                 this.emailVerificationRepo.existsById(emailVerification.getToken())
