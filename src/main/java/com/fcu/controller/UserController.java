@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -70,6 +71,9 @@ public class UserController {
                 registerData.get("email")
         );
         if (userService.existsById(userRegister.getUsername())) {
+            // TODO: add the function of resend verification email,
+            //  refill the form, if the username is existed and verify token have not been expired,
+            //  resend verification email.
             model.addAttribute("tip_message", "The username has been used.");
             return "register";
         }
@@ -92,10 +96,44 @@ public class UserController {
         return "redirect:/register/register_success";
     }
 
-    // TODO: Complete verifyRegister with smtp and token
     @GetMapping("/register/verify")
-    public String verifyRegister() {
-        return "";
+    public String verifyRegister(@RequestParam String token, Model model) {
+        // check token is in DB
+        EmailVerification emailVerify = emailVerificationService.findOneById(token);
+        if (emailVerify == null) {
+            model.addAttribute("tip_message", "Invalid verification.");
+            return "verify_result";
+        }
+        // check referenced user is existed
+        User user = emailVerify.getUser();
+        if (user == null) {
+            emailVerificationService.deleteOne(emailVerify);
+            model.addAttribute("tip_message", "Invalid verification.");
+            return "verify_result";
+        }
+        // check expired time
+        Date expiredDate = emailVerify.getExpired_time();
+        Date curDate = new Date();
+        if (expiredDate == null) {
+            emailVerificationService.deleteOne(emailVerify);
+            model.addAttribute("tip_message", "Invalid verification.");
+            return "verify_result";
+        }
+        if (curDate.after(expiredDate)) {
+            // expired
+            userService.deleteOne(user);
+            model.addAttribute("tip_message", "Invalid verification.");
+            return "verify_result";
+        }
+        // valid
+        if (!user.isEnable()) {
+            user.setEnable(true);
+        }
+        emailVerificationService.deleteOne(emailVerify);
+        // if emailVerify was deleted, the user was also deleted, so insert user data again
+        userService.insertOne(user);
+        model.addAttribute("tip_message", "Verify successfully.");
+        return "verify_result";
     }
 
     @GetMapping("/home")
