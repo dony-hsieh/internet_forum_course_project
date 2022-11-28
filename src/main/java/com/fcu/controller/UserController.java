@@ -90,6 +90,7 @@ public class UserController {
         userService.insertOne(user);
         EmailVerification emailVerify = new EmailVerification(user);
         emailVerificationService.insertOne(emailVerify);
+        // send email
         emailVerificationService.sendEmail(user.getEmail(), EMAIL_SUBJECT, EMAIL_TEXT + emailVerify.getToken());
         session.setAttribute(VERIFICATION_SESSION_KEY, emailVerify.getToken());
         return "redirect:/register/register_success";
