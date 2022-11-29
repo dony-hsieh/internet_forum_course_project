@@ -4,11 +4,15 @@ import com.fcu.model.EmailVerification;
 import com.fcu.repository.EmailVerificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,6 +35,10 @@ public class EmailVerificationService implements BasicCrudService<EmailVerificat
 
     public boolean existsById(String token) {
         return emailVerificationRepo.existsById(token);
+    }
+
+    public List<EmailVerification> findAllExpiredVerification() {
+        return emailVerificationRepo.findAllExpiredVerification();
     }
 
     public boolean insertOne(EmailVerification emailVerification) {
