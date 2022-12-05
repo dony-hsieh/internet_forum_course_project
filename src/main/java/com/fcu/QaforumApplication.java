@@ -8,8 +8,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class QaforumApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(QaforumApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(QaforumApplication.class, args);
+    }
 
 }

@@ -173,14 +173,4 @@ public class UserController {
         );
         return "redirect:/register/register_success";
     }
-
-    @GetMapping("/home")
-    public String toHome(HttpServletRequest request, Model model) {
-        String username = securityService.verifyCurrentUser(request.getSession());
-        if (username == null) {
-            return "redirect:login";
-        }
-        model.addAttribute("username", username);
-        return "home";
-    }
 }

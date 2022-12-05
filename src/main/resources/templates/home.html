@@ -4,11 +4,49 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
 <body>
 
-    <h1>
-        Welcome<span th:text="${username}">???</span>
-    </h1>
+<h1>FcuForum | Welcome</h1>
+
+<form id="search_form" method="get" action="/home">
+    <input type="search" name="q">
+    <input type="submit" value="Search">
+</form>
+
+<br>
+
+<a href="/home/postnew">
+    <button type="button">Post New Question</button>
+</a>
+
+<br>
+<br>
+
+<table>
+    <tr>
+        <th>Question title</th>
+        <th>User</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="post : ${post_list}">
+        <th>
+            <a th:href="'/home/post?id=' + ${post.getPostId()}" th:text="${post.getTitle()}" href="#">...</a>
+        </th>
+        <th th:text="${post.getUser().getUsername}">...</th>
+        <th th:text="${post.getPostDate()}">...</th>
+    </tr>
+</table>
+
+<br>
+
+<span th:each="ph : ${page_href}">
+        <a th:href="${ph.href}" th:text="${ph.number}" href="#">.</a>
+    </span>
 
 </body>
 </html>

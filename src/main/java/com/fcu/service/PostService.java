@@ -4,6 +4,10 @@ import com.fcu.model.Post;
 import com.fcu.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -42,5 +46,13 @@ public class PostService implements BasicCrudService<Post, Integer> {
         }
         this.postRepo.delete(post);
         return true;
+    }
+
+    public Page<Post> findAll(Pageable pageable) {
+        return postRepo.findAll(pageable);
+    }
+
+    public Page<Post> findByTitleContaining(String title, Pageable pageable) {
+        return postRepo.findByTitleContaining(title, pageable);
     }
 }

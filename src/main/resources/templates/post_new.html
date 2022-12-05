@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>FcuForum | Post New Question</title>
+</head>
+<body>
+
+    <h1>FcuForum | Post New Question</h1>
+
+    <form id="text_form" method="post" action="/home/postnew">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" maxlength="50" required>
+        <br>
+        <br>
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" maxlength="500" required></textarea>
+        <br>
+        <br>
+        <input type="submit" value="Post">&nbsp;&nbsp;
+        <input type="reset" value="Clear all">&nbsp;&nbsp;
+        <a href="/home">Go home</a>
+    </form>
+
+</body>
+</html>
