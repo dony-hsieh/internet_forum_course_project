@@ -21,12 +21,13 @@ public class SecurityService {
     /**
      * Issue a new token with username.
      */
-    public void issueNewToken(User user, HttpSession session) {
+    public String issueNewToken(User user, HttpSession session) {
         if (user == null || session == null) {
-            return;
+            return null;
         }
         String token = jwtUtil.generateToken(user.getUsername());
         session.setAttribute(SESSION_TOKEN_KEY, token);
+        return token;
     }
 
     /**

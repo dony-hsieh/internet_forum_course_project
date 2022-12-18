@@ -72,12 +72,12 @@ public class EmailVerificationService implements BasicCrudService<EmailVerificat
     }
 
     @Async
-    public void sendEmail(String to, String subject, String text) {
+    public void sendEmail(String to, String subject, String body) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(SMTP_USERNAME);
         mailMessage.setTo(to);
         mailMessage.setSubject(subject);
-        mailMessage.setText(text);
+        mailMessage.setText(body);
         javaMailSender.send(mailMessage);
     }
 }
